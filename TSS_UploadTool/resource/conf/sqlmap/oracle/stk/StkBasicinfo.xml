@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap>
+ <resultMap id="StkBasicinfoResult" class="com.gaotime.vip.entity.StkBasicinfo">
+	 <result property="id" column="ID"/>
+	 <result property="secucode" column="SECUCODE"/>
+	 <result property="comcode" column="COMCODE"/>
+	 <result property="tradingcode" column="TRADINGCODE"/>
+	 <result property="secuabbr" column="SECUABBR"/>
+	 <result property="chiname" column="CHINAME"/>
+	 <result property="chinameabbr" column="CHINAMEABBR"/>
+	 <result property="chispelling" column="CHISPELLING"/>
+	 <result property="engname" column="ENGNAME"/>
+	 <result property="engnameabbr" column="ENGNAMEABBR"/>
+	 <result property="secucategorycodei" column="SECUCATEGORYCODEI"/>
+	 <result property="secucategorycodeii" column="SECUCATEGORYCODEII"/>
+	 <result property="secucategory" column="SECUCATEGORY"/>
+	 <result property="exchangecode" column="EXCHANGECODE"/>
+	 <result property="exchangename" column="EXCHANGENAME"/>
+	 <result property="listingdate" column="LISTINGDATE"/>
+	 <result property="delistingdate" column="DELISTINGDATE"/>
+	 <result property="boardcode" column="BOARDCODE"/>
+	 <result property="boardname" column="BOARDNAME"/>
+	 <result property="listingstatecode" column="LISTINGSTATECODE"/>
+	 <result property="currencycode" column="CURRENCYCODE"/>
+	 <result property="isin" column="ISIN"/>
+	 <result property="entrytime" column="ENTRYTIME"/>
+	 <result property="updatetime" column="UPDATETIME"/>
+	 <result property="groundtime" column="GROUNDTIME"/>
+	 <result property="updateid" column="UPDATEID"/>
+	 <result property="resourceid" column="RESOURCEID"/>
+	 <result property="recordid" column="RECORDID"/>
+ </resultMap>
+
+   <select id="getStkBasicinfo" resultMap="StkBasicinfoResult">  
+        SELECT 
+        *
+        FROM STK_BASICINFO
+        WHERE id = #id#
+  </select>
+ 
+  
+   
+    
+    <resultMap id="StkBasicinfoForGeneration" class="java.util.HashMap">
+		<result property="secuabbr" column="SECUABBR" />
+		<result property="secucateory" column="SECUCATEGORY" />
+		<result property="exchangecode" column="EXCHANGECODE" javaType="java.lang.Integer"/>
+		<result property="tradingcode" column="TRADINGCODE" />
+	</resultMap>
+	<!-- 获取生成静态页面所需要的股票信息列表 -->
+	<select id="listStkBasicinfoForGeneration" parameterClass="java.util.Map" resultMap="StkBasicinfoForGeneration">
+		SELECT SECUABBR, SECUCATEGORY, EXCHANGECODE, TRADINGCODE
+		  FROM STK_BASICINFO
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="secucategoryCodeII"> SECUCATEGORYCODEII = #secucategoryCodeII# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="secucategoryCodeIIs"> SECUCATEGORYCODEII in ($secucategoryCodeIIs$) </isNotEmpty>
+		</dynamic>
+		 ORDER BY TRADINGCODE
+	</select>
+    
+    <!-- 股票简称代码交易市场 -->
+    <resultMap id="StkBasicinfoResult1" class="java.util.HashMap">
+		<result property="secuabbr" column="SECUABBR" />
+		<result property="exchangecode" column="EXCHANGECODE" javaType="java.lang.Integer"/>
+		<result property="tradingcode" column="TRADINGCODE" />
+	</resultMap>
+	<!-- 股票所属行业名称 -->
+	<resultMap id="StksectorResult" class="java.util.HashMap">
+		<result property="sectorname" column="SECTORNAME" />
+	</resultMap>
+	<!-- (个股全景)根据股票代码查找股票行业 -->
+    <select id="findStkBasicinfoByTradingcode" resultMap="StkBasicinfoResult1">
+   	 SELECT T1.SECUABBR, T1.EXCHANGECODE, T1.TRADINGCODE
+		          FROM STK_BASICINFO T1
+		         WHERE
+		           T1.TRADINGCODE = #tradingcode#
+		          AND ROWNUM = 1
+   </select>
+     <!-- (个股全景)根据股票代码查找股票行业 -->
+    <select id="findStksectorByTradingcode" resultMap="StksectorResult">
+   	   SELECT *
+		  FROM (SELECT  T2.SECTORNAME
+		          FROM STK_BASICINFO T1, STK_SECTOR T2
+		         WHERE T1.SECUCODE = T2.SECUCODE
+		           AND T1.TRADINGCODE = #tradingcode#
+		           AND T2.SECTORSTANDARDCODE = 10
+		           AND T2.INFOSOURCE = '中国证监会行业'
+		         ORDER BY T2.SECTORCODE DESC)
+		 WHERE ROWNUM = 1
+   </select>
+   
+   <resultMap class="java.util.HashMap" id="StkBasicinfoForCache">
+   	<result property="tradingcode" column="TRADINGCODE"/>
+   	<result property="secuabbr" column="SECUABBR"/>
+   	<result property="chispelling" column="CHISPELLING"/>
+   </resultMap>
+   <!-- 获取全部股票基础信息 -->
+   <select id="listAllStkBasicinfoForCache" resultMap="StkBasicinfoForCache">
+   	SELECT TRADINGCODE,SECUABBR,CHISPELLING
+	  FROM STK_BASICINFO
+	 WHERE SECUCATEGORYCODEII IN (1001, 1002)
+	   AND LISTINGSTATECODE = 1
+	 ORDER BY TRADINGCODE
+   </select>
+</sqlMap>

@@ -1,0 +1,4 @@
+.search_div{font-size:12px;position: absolute;z-index: 999;font-family:'SimSun',Arial;font-size:12px;color:#373b40;}
+.search_div_tr_show{background:url(../images/stock_bg2.gif) repeat-x;color:#fff;height:24px;line-height:24px;}
+.search_div_tr{background:url(../images/stock_bg1.gif) repeat-x;height:24px;line-height:24px;}
+.search_div_td{text-align:left;height:24px;line-height:24px;cursor:pointer;padding-left:10px;padding-right:10px;}

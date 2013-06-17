@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap>
+
+
+
+
+    <resultMap class="java.util.HashMap" id="listGlobalxcalltiForTestResult">
+		<result property="yymm" column="YYMM"/>
+		<result property="iot_gmt" column="IOT_GMT"/>
+		<result property="machine_type" column="MACHINE_TYPE"/>
+    </resultMap>
+    <!--Globalxcallti_TSS -->
+    <select id="listGlobalxcalltiForTest" resultMap="listGlobalxcalltiForTestResult">
+SELECT
+    *
+FROM
+    (
+        SELECT
+            YYMM,
+            IOT_GMT,
+            MACHINE_TYPE,
+            MACHINE_MONTH,
+            ROW_NUMBER() OVER() AS ROW_NO
+        FROM
+            GLOBALXCALLTI_TSS) AS w
+WHERE
+    ROW_NO <![CDATA[ < ]]> 100
+    	
+    </select>
+
+ <resultMap id="Globalxcallti" class="cn.ibm.com.entity.Globalxcallti">
+	 <result property="yymm" column="YYMM"/>
+	 <result property="iot_gmt" column="IOT_GMT"/>
+	 <result property="machine_type" column="MACHINE_TYPE"/>
+	 <result property="machine_month" column="MACHINE_MONTH"/>
+	 <result property="ra" column="RA"  />
+	 <result property="ra_rate" column="RA_RATE"  />
+	 <result property="valid_calls" column="VALID_CALLS"/>
+	 <result property="invalid_cancelled" column="INVALID_CANCELLED"  />
+	 <result property="eligible" column="ELIGIBLE"  />
+	 <result property="screened" column="SCREENED"  />
+	 <result property="fop" column="FOP"  />
+	 <result property="cru_calls" column="CRU_CALLS"/>
+	 <result property="on_site_calls" column="ON_SITE_CALLS"  />
+	 <result property="trst" column="TRST"  />
+	 <result property="total_ap" column="TOTAL_AP"/>
+	 <result property="fapr" column="FAPR"/>
+	 <result property="npra" column="NPRA"/>
+	 <result property="travel_time" column="TRAVEL_TIME"/>
+	 <result property="on_site_fix_time" column="ON_SITE_FIX_TIME"/>
+	 <result property="total_field_time" column="TOTAL_FIELD_TIME"/>
+	 <result property="total_fix_time" column="TOTAL_FIX_TIME"/>
+	 <result property="parts_disbursed" column="PARTS_DISBURSED"/>
+	 <result property="parts_good_return" column="PARTS_GOOD_RETURN"  />
+	 <result property="parts_used" column="PARTS_USED"  />
+	 <result property="parts_usage" column="PARTS_USAGE"  />
+	 <result property="parts_used_cost" column="PARTS_USED_COST"  />
+ </resultMap>
+   <insert id="insertGlobalxcallti" parameterClass="cn.ibm.com.entity.Globalxcallti">
+        INSERT INTO GLOBALXCALLTI_TSS ( 
+         <dynamic prepend="">
+            <isNotEmpty prepend="" property="yymm">  YYMM  </isNotEmpty>
+            <isNotEmpty prepend="," property="iot_gmt">  IOT_GMT  </isNotEmpty>
+            <isNotEmpty prepend="," property="machine_type">  MACHINE_TYPE  </isNotEmpty>
+            <isNotEmpty prepend="," property="machine_month">  MACHINE_MONTH  </isNotEmpty>
+            <isNotEmpty prepend="," property="ra">  RA  </isNotEmpty>
+            <isNotEmpty prepend="," property="ra_rate">  RA_RATE  </isNotEmpty>
+            <isNotEmpty prepend="," property="valid_calls">  VALID_CALLS  </isNotEmpty>
+            <isNotEmpty prepend="," property="invalid_cancelled">  INVALID_CANCELLED  </isNotEmpty>
+            <isNotEmpty prepend="," property="eligible">  ELIGIBLE  </isNotEmpty>
+            <isNotEmpty prepend="," property="screened">  SCREENED  </isNotEmpty>
+            <isNotEmpty prepend="," property="fop">  FOP  </isNotEmpty>
+            <isNotEmpty prepend="," property="cru_calls">  CRU_CALLS  </isNotEmpty>
+            <isNotEmpty prepend="," property="on_site_calls">  ON_SITE_CALLS  </isNotEmpty>
+            <isNotEmpty prepend="," property="trst">  TRST  </isNotEmpty>
+            <isNotEmpty prepend="," property="total_ap">  TOTAL_AP  </isNotEmpty>
+            <isNotEmpty prepend="," property="fapr">  FAPR  </isNotEmpty>
+            <isNotEmpty prepend="," property="npra">  NPRA  </isNotEmpty>
+            <isNotEmpty prepend="," property="travel_time">  TRAVEL_TIME  </isNotEmpty>
+            <isNotEmpty prepend="," property="on_site_fix_time">  ON_SITE_FIX_TIME  </isNotEmpty>
+            <isNotEmpty prepend="," property="total_field_time">  TOTAL_FIELD_TIME  </isNotEmpty>
+            <isNotEmpty prepend="," property="total_fix_time">  TOTAL_FIX_TIME  </isNotEmpty>
+            <isNotEmpty prepend="," property="parts_disbursed">  PARTS_DISBURSED  </isNotEmpty>
+            <isNotEmpty prepend="," property="parts_good_return">  PARTS_GOOD_RETURN  </isNotEmpty>
+            <isNotEmpty prepend="," property="parts_used">  PARTS_USED  </isNotEmpty>
+            <isNotEmpty prepend="," property="parts_usage">  PARTS_USAGE  </isNotEmpty>
+            <isNotEmpty prepend="," property="parts_used_cost">  PARTS_USED_COST  </isNotEmpty>
+          </dynamic>         
+         ) VALUES (
+          <dynamic prepend="">
+		    <isNotEmpty prepend="" property="yymm">  #yymm#  </isNotEmpty>
+            <isNotEmpty prepend="," property="iot_gmt">  #iot_gmt#  </isNotEmpty>
+            <isNotEmpty prepend="," property="machine_type">  #machine_type#  </isNotEmpty>
+            <isNotEmpty prepend="," property="machine_month">  #machine_month#  </isNotEmpty>
+            <isNotEmpty prepend="," property="ra">  #ra#  </isNotEmpty>
+            <isNotEmpty prepend="," property="ra_rate">  #ra_rate#  </isNotEmpty>
+            <isNotEmpty prepend="," property="valid_calls">  #valid_calls#  </isNotEmpty>
+            <isNotEmpty prepend="," property="invalid_cancelled">  #invalid_cancelled#  </isNotEmpty>
+            <isNotEmpty prepend="," property="eligible">  #eligible#  </isNotEmpty>
+            <isNotEmpty prepend="," property="screened">  #screened#  </isNotEmpty>
+            <isNotEmpty prepend="," property="fop">  #fop#  </isNotEmpty>
+            <isNotEmpty prepend="," property="cru_calls">  #cru_calls#  </isNotEmpty>
+            <isNotEmpty prepend="," property="on_site_calls">  #on_site_calls#  </isNotEmpty>
+            <isNotEmpty prepend="," property="trst">  #trst#  </isNotEmpty>
+            <isNotEmpty prepend="," property="total_ap">  #total_ap#  </isNotEmpty>
+            <isNotEmpty prepend="," property="fapr">  #fapr#  </isNotEmpty>
+            <isNotEmpty prepend="," property="npra">  #npra#  </isNotEmpty>
+            <isNotEmpty prepend="," property="travel_time">  #travel_time#  </isNotEmpty>
+            <isNotEmpty prepend="," property="on_site_fix_time">  #on_site_fix_time#  </isNotEmpty>
+            <isNotEmpty prepend="," property="total_field_time">  #total_field_time#  </isNotEmpty>
+            <isNotEmpty prepend="," property="total_fix_time">  #total_fix_time#  </isNotEmpty>
+            <isNotEmpty prepend="," property="parts_disbursed">  #parts_disbursed#  </isNotEmpty>
+            <isNotEmpty prepend="," property="parts_good_return">  #parts_good_return#  </isNotEmpty>
+            <isNotEmpty prepend="," property="parts_used">  #parts_used#  </isNotEmpty>
+            <isNotEmpty prepend="," property="parts_usage">  #parts_usage#  </isNotEmpty>
+            <isNotEmpty prepend="," property="parts_used_cost">  #parts_used_cost#  </isNotEmpty>    
+           </dynamic>
+         )
+    </insert>
+
+  	
+</sqlMap>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap>
+ <resultMap id="NwsLawsregulationsResult" class="com.gaotime.vip.entity.NwsLawsregulations">
+	 <result property="id" column="ID"/>
+	 <result property="pubdate" column="PUBDATE"/>
+	 <result property="infosource" column="INFOSOURCE"/>
+	 <result property="title" column="TITLE"/>
+	 <result property="effedate" column="EFFEDATE"/>
+	 <result property="issueorgname" column="ISSUEORGNAME"/>
+	 <result property="exchangename" column="EXCHANGENAME"/>
+	 <result property="breedname" column="BREEDNAME"/>
+	 <result property="lawname" column="LAWNAME"/>
+	 <result property="keywords" column="KEYWORDS"/>
+	 <result property="content" column="CONTENT"/>
+	 <result property="isvalid" column="ISVALID"/>
+	 <result property="disusedate" column="DISUSEDATE"/>
+	 <result property="disusereason" column="DISUSEREASON"/>
+	 <result property="importantlevel" column="IMPORTANTLEVEL"/>
+	 <result property="versionnum" column="VERSIONNUM"/>
+	 <result property="remark" column="REMARK"/>
+	 <result property="lasttitle" column="LASTTITLE"/>
+	 <result property="entrytime" column="ENTRYTIME"/>
+	 <result property="updatetime" column="UPDATETIME"/>
+	 <result property="groundtime" column="GROUNDTIME"/>
+	 <result property="updateid" column="UPDATEID"/>
+	 <result property="resourceid" column="RESOURCEID"/>
+	 <result property="recordid" column="RECORDID"/>
+ </resultMap>
+ 
+   <select id="getNwsLawsregulations" resultMap="NwsLawsregulationsResult">  
+        SELECT 
+        *
+        FROM NWS_LAWSREGULATIONS
+        WHERE id = #id#
+  </select>
+ 
+    <!-- 用于法律法规列表内容-->
+  <resultMap id="NwsLawsAbstractsResult" class="com.gaotime.vip.entity.NwsLawsregulations">
+	 <result property="id" column="ID"/>	
+	<result property="title" column="TITLE"/>	 
+	<result property="issueorgname" column="ISSUEORGNAME"/>	 
+	 <result property="pubdate" column="PUBDATE"/> 	
+	<result property="content" column="CONTENT"/>
+ </resultMap>
+   <!-- 根据主键查找法律法规内容 -->
+   <select id="findNwsLawsById" resultMap="NwsLawsAbstractsResult">  
+       select id, title,IssueOrgName, pubdate, content from nws_lawsregulations
+      <dynamic prepend="WHERE">
+         <isNotEmpty prepend="" property="id"> ID = #id# </isNotEmpty>
+      </dynamic>
+  </select>
+  <!--法律法规  -->
+  <resultMap id="NwsLawsregulationsResult1" class="java.util.HashMap">
+	 <result property="id" column="ID"/>
+	 <result property="pubdate" column="PUBDATE"/>
+	 <result property="reporttitle" column="TITLE"/>
+	 <result property="comname" column="InfoSource"/>
+	 <result property="newscategoryname" column="LAWNAME"/>
+	 <result property="r" column="R"/>
+ </resultMap>
+ 
+   <select id="listFinancialLawsCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">  
+		select count(T1.id)
+       
+  from NWS_LawsRegulations T1
+   <dynamic prepend="WHERE">
+  <isEmpty prepend="AND" property="beginDate">
+          	 T1.PUBDATE <![CDATA[ >= ]]> SYSDATE -  #defaultdate#
+        	</isEmpty>
+            
+            <isEmpty prepend="AND" property="endDate">
+             T1.PUBDATE <![CDATA[ < ]]> SYSDATE
+            </isEmpty>
+        	<isNotEmpty prepend="AND" property="beginDate">
+          		<![CDATA[
+			 			T1.PUBDATE >= #beginDate#
+		  		]]>
+        	</isNotEmpty>
+        <isNotEmpty prepend="AND" property="endDate">
+          <![CDATA[
+			T1.PUBDATE <= #endDate#
+		  ]]>
+		  </isNotEmpty>
+		   
+   and T1.PUBDATE is not null
+ 
+       
+            <isNotEmpty prepend="AND" property="reportTitle">  T1.Title like '%$reportTitle$%' escape '\'	
+            </isNotEmpty>
+	 </dynamic>
+		order by T1.PUBDATE desc
+	</select>
+	
+	<select id="listFinancialLawsByPage" parameterClass="java.util.Map" resultMap="NwsLawsregulationsResult1">
+      select * from(SELECT C.*, ROWNUM R FROM(select T1.id,
+       T1.pubdate,
+       T1.Title,
+       T1.InfoSource,       
+       T1.LawName      
+  from NWS_LawsRegulations T1
+ <dynamic prepend="WHERE">
+  <isEmpty prepend="AND" property="beginDate">
+          	 T1.PUBDATE <![CDATA[ >= ]]> SYSDATE -  #defaultdate#
+        	</isEmpty>
+            
+            <isEmpty prepend="AND" property="endDate">
+             T1.PUBDATE <![CDATA[ < ]]> SYSDATE
+            </isEmpty>
+        	<isNotEmpty prepend="AND" property="beginDate">
+          		<![CDATA[
+			 			T1.PUBDATE >= #beginDate#
+		  		]]>
+        	</isNotEmpty>
+        <isNotEmpty prepend="AND" property="endDate">
+          <![CDATA[
+			T1.PUBDATE <= #endDate#
+		  ]]>
+		  </isNotEmpty>
+		 and T1.PUBDATE is not null
+            <isNotEmpty prepend="AND" property="reportTitle">  T1.Title like '%$reportTitle$%' escape '\'	
+            </isNotEmpty>
+		 </dynamic>
+		order by T1.PUBDATE desc
+		 )C
+ 			 <![CDATA[
+		WHERE ROWNUM <= #end# ) D
+		WHERE R > #start#   
+		]]> 
+    </select>
+    
+    
+  
+</sqlMap>

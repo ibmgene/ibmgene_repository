@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap>
+  <resultMap id="StkDailyquoteResult1" class="com.gaotime.vip.entity.StkDailyquote">
+	 <result property="id" column="ID"/>
+     <result property="tradingday" column="TRADINGDAY"/>
+     <result property="closingprice" column="CLOSINGPRICE"/>
+	 <result property="daychange" column="DAYCHANGE"/>
+	 <result property="daychangerate" column="DAYCHANGERATE"/>
+	 <result property="secuabbr" column="SECUABBR"/>
+ </resultMap>
+ 
+  <!-- (个股全景)根据股票代码查找最新行情 -->
+   <select id="findStkDailyquoteBycode" resultMap="StkDailyquoteResult1">  
+      SELECT * FROM (
+		      SELECT T2.ID,
+		       T2.DAYCHANGE,
+		       T2.DAYCHANGERATE,
+		       T2.CLOSINGPRICE,
+		       T2.TRADINGDAY,
+		       T1.SECUABBR
+		  FROM STK_BASICINFO T1, STK_DAILYQUOTE T2
+		 WHERE T1.SECUCODE = T2.SECUCODE 
+		   AND T2.TRADINGSTATE = 1
+        <isNotEmpty prepend="AND" property="tradingcode">  T1.TRADINGCODE = #tradingcode#  </isNotEmpty>
+	    <isEmpty prepend="ORDER BY" property="orderByFlag"> T2.tradingday desc </isEmpty>
+ 		)A WHERE
+ 		 <![CDATA[
+		       ROWNUM <= 1
+		  ]]>
+  </select>
+  
+  <resultMap id="StkDailyquoteResult2" class="com.gaotime.vip.entity.StkDailyquote">
+	  <result property="closingprice" column="CLOSINGPRICE"/>
+	  <result property="inxclosingprice" column="INXCLOSINGPRICE"/>
+      <result property="tradingday" column="TRADINGDAY"/>
+	  <result property="secuabbr" column="SECUABBR"/>
+	  <result property="inxsecuabbr" column="INXSECUABBR"/>
+  </resultMap>
+    <!-- (个股全景)市场表现-查找半年内股票行情与指数对比  -->
+   <select id="listDailyquoteBycode" parameterClass="java.util.Map" resultMap="StkDailyquoteResult2">  
+     SELECT STK.ClosingPrice,STK.TRADINGDAY,STK.SECUABBR,INX.ClosingPrice INXClosingPrice,INX.SECUABBR INXSECUABBR FROM 
+     (SELECT T2.ClosingPrice,T2.TRADINGDAY,T1.SECUABBR 
+     FROM STK_BASICINFO T1,STK_DAILYQUOTE T2
+     WHERE  
+     T1.SECUCODE=T2.SECUCODE 
+     <isNotEmpty prepend="AND" property="tradingcode">  T1.TRADINGCODE = #tradingcode#  </isNotEmpty>
+     AND  T2.TRADINGDAY>(SYSDATE-180))STK
+     ,
+     (SELECT T2.ClosingPrice,T2.TRADINGDAY,T1.SECUABBR 
+     FROM INX_DAILYQUOTE T2,INX_BASICINFO T1 
+     WHERE 
+     <isNotEmpty prepend="" property="inxtradingcode">  T1.TRADINGCODE = #inxtradingcode#  </isNotEmpty>
+     AND T1.SECUCODE=T2.INDEXCODE AND T2.TRADINGDAY>(SYSDATE-180) 
+     AND T2.TRADINGSTATE=1)INX
+     WHERE STK.TRADINGDAY=INX.TRADINGDAY
+     AND STK.TRADINGDAY IS NOT NULL
+	 <isEmpty prepend="ORDER BY" property="orderByFlag"> STK.TRADINGDAY ASC </isEmpty>
+ 		
+  </select>
+</sqlMap>

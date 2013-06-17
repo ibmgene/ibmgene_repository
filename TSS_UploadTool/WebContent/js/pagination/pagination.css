@@ -1,0 +1,29 @@
+.pagination{
+	border-top:1px solid #61A3D4;
+	height:25px;
+	width:100%;
+	bottom: 0px;
+	right:16px; 
+	text-align:left; 
+	z-index:2; 
+	overflow:hidden;
+}
+.pagination span{
+	font-size:12px;
+}
+.page-first,.page-prev,.page-next,.page-last,.page-wait{
+	padding:0px 2px 0px 2px;
+	margin: 0 5px 0 5px;
+	border:0;
+	align-text:right:
+}
+.pagepad{
+	margin: 0 5px 0 5px;
+	width:102px;
+	color:#333;
+	}
+.page-num{
+	width:30px;
+	border:1px solid #ccc;
+	margin: 0 5px 0 5px;
+}

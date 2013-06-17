@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap>
+ <resultMap id="FndBasicinfoResult" class="com.gaotime.vip.entity.FndBasicinfo">
+	 <result property="id" column="ID"/>
+	 <result property="secucode" column="SECUCODE"/>
+	 <result property="managementcomcode" column="MANAGEMENTCOMCODE"/>
+	 <result property="managementcom" column="MANAGEMENTCOM"/>
+	 <result property="custodiancode" column="CUSTODIANCODE"/>
+	 <result property="custodian" column="CUSTODIAN"/>
+	 <result property="frontcode" column="FRONTCODE"/>
+	 <result property="backcode" column="BACKCODE"/>
+	 <result property="tradingcode" column="TRADINGCODE"/>
+	 <result property="secuabbr" column="SECUABBR"/>
+	 <result property="chiname" column="CHINAME"/>
+	 <result property="chinameabbr" column="CHINAMEABBR"/>
+	 <result property="engname" column="ENGNAME"/>
+	 <result property="engnameabbr" column="ENGNAMEABBR"/>
+	 <result property="secucategorycodei" column="SECUCATEGORYCODEI"/>
+	 <result property="secucategorycodeii" column="SECUCATEGORYCODEII"/>
+	 <result property="secucategory" column="SECUCATEGORY"/>
+	 <result property="exchangecode" column="EXCHANGECODE"/>
+	 <result property="exchangename" column="EXCHANGENAME"/>
+	 <result property="listingdate" column="LISTINGDATE"/>
+	 <result property="delistingdate" column="DELISTINGDATE"/>
+	 <result property="boardcode" column="BOARDCODE"/>
+	 <result property="boardname" column="BOARDNAME"/>
+	 <result property="listingstatecode" column="LISTINGSTATECODE"/>
+	 <result property="currencycode" column="CURRENCYCODE"/>
+	 <result property="isin" column="ISIN"/>
+	 <result property="isexchange" column="ISEXCHANGE"/>
+	 <result property="isotc" column="ISOTC"/>
+	 <result property="fundnature" column="FUNDNATURE"/>
+	 <result property="operationtype" column="OPERATIONTYPE"/>
+	 <result property="fundtypecom" column="FUNDTYPECOM"/>
+	 <result property="fundtypeself" column="FUNDTYPESELF"/>
+	 <result property="fundtypems" column="FUNDTYPEMS"/>
+	 <result property="fundtypecs" column="FUNDTYPECS"/>
+	 <result property="issuevol" column="ISSUEVOL"/>
+	 <result property="newestvol" column="NEWESTVOL"/>
+	 <result property="parval" column="PARVAL"/>
+	 <result property="purchasestate" column="PURCHASESTATE"/>
+	 <result property="redemptionstate" column="REDEMPTIONSTATE"/>
+	 <result property="invobjective" column="INVOBJECTIVE"/>
+	 <result property="invscope" column="INVSCOPE"/>
+	 <result property="invstrategy" column="INVSTRATEGY"/>
+	 <result property="benchmark" column="BENCHMARK"/>
+	 <result property="invrestriction" column="INVRESTRICTION"/>
+	 <result property="duration" column="DURATION"/>
+	 <result property="durationstartdate" column="DURATIONSTARTDATE"/>
+	 <result property="durationenddate" column="DURATIONENDDATE"/>
+	 <result property="contracteffectdate" column="CONTRACTEFFECTDATE"/>
+	 <result property="riskreturnfeature" column="RISKRETURNFEATURE"/>
+	 <result property="returndistribution" column="RETURNDISTRIBUTION"/>
+	 <result property="fundmanager" column="FUNDMANAGER"/>
+	 <result property="isguaranteed" column="ISGUARANTEED"/>
+	 <result property="guaranteedstartdate" column="GUARANTEEDSTARTDATE"/>
+	 <result property="guaranteedenddate" column="GUARANTEEDENDDATE"/>
+	 <result property="isclosedendduration" column="ISCLOSEDENDDURATION"/>
+	 <result property="closedstartdate" column="CLOSEDSTARTDATE"/>
+	 <result property="closedenddate" column="CLOSEDENDDATE"/>
+	 <result property="fundintro" column="FUNDINTRO"/>
+	 <result property="marketrisk" column="MARKETRISK"/>
+	 <result property="managementrisk" column="MANAGEMENTRISK"/>
+	 <result property="liquidityrisk" column="LIQUIDITYRISK"/>
+	 <result property="invstrategyrisk" column="INVSTRATEGYRISK"/>
+	 <result property="tradingrisk" column="TRADINGRISK"/>
+	 <result property="otherrisk" column="OTHERRISK"/>
+	 <result property="managementfee" column="MANAGEMENTFEE"/>
+	 <result property="trusteeshipfee" column="TRUSTEESHIPFEE"/>
+	 <result property="entrytime" column="ENTRYTIME"/>
+	 <result property="updatetime" column="UPDATETIME"/>
+	 <result property="groundtime" column="GROUNDTIME"/>
+	 <result property="updateid" column="UPDATEID"/>
+	 <result property="resourceid" column="RESOURCEID"/>
+	 <result property="recordid" column="RECORDID"/>
+	 <result property="fundmaincode" column="FUNDMAINCODE"/>
+	 <result property="iscombine" column="ISCOMBINE"/>
+	 <result property="indexinvtype" column="INDEXINVTYPE"/>
+	 <result property="indexinvobject" column="INDEXINVOBJECT"/>
+	 <result property="fndhierarchicalpattern" column="FNDHIERARCHICALPATTERN"/>
+	 <result property="fndlevel" column="FNDLEVEL"/>
+	 <result property="etfconnectprimaryfnd" column="ETFCONNECTPRIMARYFND"/>
+	 <result property="fndumbrellaseries" column="FNDUMBRELLASERIES"/>
+	 <result property="carryforwardtype" column="CARRYFORWARDTYPE"/>
+	 <result property="investcharacter" column="INVESTCHARACTER"/>
+	 <result property="returntype" column="RETURNTYPE"/>
+	 <result property="isgetachivementreward" column="ISGETACHIVEMENTREWARD"/>
+	 <result property="fewestredemvol" column="FEWESTREDEMVOL"/>
+	 <result property="fewestholdvol" column="FEWESTHOLDVOL"/>
+	 <result property="contracteffectannouncedate" column="CONTRACTEFFECTANNOUNCEDATE"/>
+	 <result property="durationdays" column="DURATIONDAYS"/>
+	 <result property="listedvol" column="LISTEDVOL"/>
+	 <result property="firstlistedvol" column="FIRSTLISTEDVOL"/>
+	 <result property="url" column="URL"/>
+	 <result property="durationenddatebeforechange" column="DURATIONENDDATEBEFORECHANGE"/>
+ </resultMap>
+
+  <!-- 基金资产配置  -->
+ <resultMap id="FndBasicinfoResultforlist" class="com.gaotime.vip.entity.FndBasicinfo">
+	 <result property="frontcode" column="FRONTCODE"/>
+	 <result property="backcode" column="BACKCODE"/>
+	 <result property="gacode" column="GACODE"/>
+	 <result property="secucode" column="SECUCODE"/>
+	 <result property="tradingcode" column="TRADINGCODE"/>
+	 <result property="secuabbr" column="SECUABBR"/>
+	 <result property="listedvol" column="LISTEDVOL"/>
+	 <result property="shareending" column="SHAREENDING"/>
+	 <result property="contracteffectdate" column="CONTRACTEFFECTDATE"/>
+	 <result property="fundmanager" column="FUNDMANAGER"/>
+	 <result property="managementcom" column="MANAGEMENTCOM"/>
+	 <result property="managementfee" column="MANAGEMENTFEE"/>
+	 <result property="trusteeshipfee" column="TRUSTEESHIPFEE"/>
+	 <result property="purchasestate" column="PURCHASESTATE"/>
+	 <result property="redemptionstate" column="REDEMPTIONSTATE"/> 	 	
+	 <result property="fundtypecom" column="FUNDTYPECOM"/> 	 	
+	 
+ </resultMap>
+ 
+ <!-- 在发基金 -->
+ <resultMap id="FndIssueResultforlist" class="com.gaotime.vip.entity.FndBasicinfo">
+	 <result property="frontcode" column="FRONTCODE"/>
+	 <result property="secuabbr" column="SECUABBR"/>
+	 <result property="backcode" column="BACKCODE"/>
+	 <result property="tradingcode" column="TRADINGCODE"/>
+	 <result property="secucode" column="SECUCODE"/>
+	 <result property="fundmanager" column="FUNDMANAGER"/>
+	 <result property="managementcom" column="MANAGEMENTCOM"/>
+	 <result property="fundtypecom" column="FUNDTYPECOM"/> 	
+	 <result property="issuestartdate" column="ISSUESTARTDATE"/> 
+	 <result property="issueenddate" column="ISSUEENDDATE"/> 	
+ </resultMap>
+ 
+ <!-- 在发基金详细 -->
+ <resultMap id="FndIssueResultByfundsecucodeforlist" class="com.gaotime.vip.entity.FndBasicinfo">
+ 	 <result property="id" column="ID"/>
+	 <result property="frontcode" column="FRONTCODE"/>
+	 <result property="backcode" column="BACKCODE"/>
+	 <result property="tradingcode" column="TRADINGCODE"/>
+	 <result property="secuabbr" column="SECUABBR"/>
+	 <result property="secucode" column="SECUCODE"/>
+	 <result property="fundmanager" column="FUNDMANAGER"/>
+	 <result property="managementcom" column="MANAGEMENTCOM"/>
+	 <result property="fundtypecom" column="FUNDTYPECOM"/> 	
+	 <result property="operationtype" column="OPERATIONTYPE"/>
+	 <result property="chiname" column="CHINAME"/>
+	 <result property="custodian" column="CUSTODIAN"/>
+	 <result property="invobjective" column="INVOBJECTIVE"/>
+	 <result property="invstrategy" column="INVSTRATEGY"/>
+	 <result property="invscope" column="INVSCOPE"/>
+	 <result property="benchmark" column="BENCHMARK"/>
+	 <result property="riskreturnfeature" column="RISKRETURNFEATURE"/>
+	 <result property="issuestartdate" column="ISSUESTARTDATE"/> 
+	 <result property="issueenddate" column="ISSUEENDDATE"/>	
+	 <result property="fsubscriptionotcp" column="FSUBSCRIPTIONOTCP"/>
+ </resultMap>
+ 
+ 
+   <select id="getFndBasicinfo" resultMap="FndBasicinfoResult">  
+        SELECT 
+        *
+        FROM FND_BASICINFO
+        WHERE id = #id#
+  </select>
+  <select id="listFndBasicinfo" parameterClass="com.gaotime.vip.common.util.PageProperty" resultMap="FndBasicinfoResult">  
+         select * from 
+        (select A.*,ROWNUM R from 
+        (select * from FND_BASICINFO
+        <dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="params.id"> id = #params.id# </isNotEmpty>
+		</dynamic>
+		<dynamic prepend="ORDER BY">
+		  <isNotEmpty property="ascs">
+		     <iterate property="ascs" conjunction="," close="ASC">
+              $ascs[]$
+             </iterate>
+		  </isNotEmpty>
+		  
+		  <isNotEmpty property="descs">
+		     <isNotEmpty property="ascs">
+		     ,
+		     </isNotEmpty>   
+		     <iterate property="descs" conjunction="," close="DESC">
+              $descs[]$
+             </iterate>
+		  </isNotEmpty>          
+		</dynamic>
+         )A 
+        <![CDATA[
+		WHERE ROWNUM <= $npage$*$npagesize$)B
+		WHERE R > ($npage$-1)*$npagesize$
+		]]>
+  </select>
+  
+   <select id="getFndBasicinfoCount" parameterClass="com.gaotime.vip.common.util.PageProperty" resultClass="int">  
+		select count(0) from FND_BASICINFO 
+        <dynamic prepend="WHERE">
+            <isNotEmpty prepend="AND" property="params.id"> id = #params.id# </isNotEmpty>		
+		</dynamic>
+	</select>
+	
+	<select id="listAllFndBasicinfo" parameterClass="java.util.Map" resultMap="FndBasicinfoResult">
+       select * from FND_BASICINFO
+       <dynamic prepend="WHERE">
+            <isNotEmpty prepend="AND" property="id"> id = #id# </isNotEmpty>		
+		</dynamic>
+    </select>
+    
+    <resultMap class="java.util.HashMap" id="FndBasicinfoBase">
+		<result property="secucode" column="SECUCODE" javaType="java.lang.Integer"/>
+		<result property="frontcode" column="FRONTCODE"/>
+		<result property="backcode" column="BACKCODE"/>
+		<result property="tradingcode" column="TRADINGCODE"/>
+		<result property="secuabbr" column="SECUABBR"/>
+		<result property="secucategorycodeii" column="SECUCATEGORYCODEII" javaType="java.lang.Integer"/>
+		<result property="listingstatecode" column="LISTINGSTATECODE"/>
+		<result property="fundtypecom" column="FUNDTYPECOM" javaType="java.lang.Integer"/>
+    </resultMap>
+    <!-- 获取基金基本资料列表 -->
+    <select id="listFndBasicinfoBase" resultMap="FndBasicinfoBase">
+    	SELECT SECUCODE,
+    		   FRONTCODE,
+    		   BACKCODE,
+    		   TRADINGCODE,
+    		   SECUABBR,
+    		   SECUCATEGORYCODEII,
+    		   LISTINGSTATECODE,
+    		   FUNDTYPECOM
+    	FROM FND_BASICINFO
+    	<dynamic prepend="WHERE">
+    		<isNotEmpty prepend="AND" property="listingstatecode"> listingstatecode = #listingstatecode# </isNotEmpty>
+    	</dynamic>
+    	ORDER BY SECUCODE
+    </select>
+    
+    <resultMap class="java.util.HashMap" id="FndBasicinfoSimple">
+    	<result property="secuabbr" column="SECUABBR"/>
+    	<result property="managementcom" column="MANAGEMENTCOM"/>
+    	<result property="fundmanager" column="FUNDMANAGER"/>
+    	<result property="riskreturnfeature" column="RISKRETURNFEATURE" javaType="java.lang.String"/>
+    	<result property="invobjective" column="INVOBJECTIVE" javaType="java.lang.String"/>
+    	<result property="contracteffectdate" column="CONTRACTEFFECTDATE"/>
+    	<result property="fundtypedesc" column="FUNDTYPEDESC"/>
+    </resultMap>
+    
+    <!-- (基金全景)获取基金基本资料   基金资产配置 -->
+    <select id="getFndBasicinfoSimple" resultMap="FndBasicinfoSimple">
+    	SELECT FB.SECUABBR,
+    		   FB.MANAGEMENTCOM,
+		       FB.FUNDMANAGER,
+		       FB.RISKRETURNFEATURE,
+		       FB.INVOBJECTIVE,
+		       FB.CONTRACTEFFECTDATE,
+		       (SELECT CS.CONSTDESC
+		          FROM CNT_SYSTEM CS
+		         WHERE CS.CONSTCODE = FB.FUNDTYPECOM
+		           AND CS.TYPECODE = 10019
+		           AND ROWNUM = 1) FUNDTYPEDESC
+		  FROM FND_BASICINFO FB
+		 WHERE FB.SECUCODE=#secucode#
+    </select>
+    
+    <!-- 开放式基金基本资料 -->
+    <select id="listfundBasicInfoByfundtypecom" parameterClass="java.util.Map" resultMap="FndBasicinfoResultforlist">
+      WITH 
+CTE AS
+(
+  SELECT secucode, enddate, ShareEnding,ROW_NUMBER() OVER(PARTITION BY secucode ORDER BY enddate DESC,reporttype DESC) AS RN
+  FROM FND_ShareChange
+),
+CTE1 AS 
+(
+  SELECT *
+  FROM CTE
+  WHERE RN = 1
+)
+select  
+T1.FrontCode,
+T1.BackCode,
+T1.TradingCode,
+T1.SecuAbbr,
+T3.GACODE,
+T1.SECUCODE,
+T1.IssueVol / 100000000 as ListedVol,
+T2.ShareEnding,
+T1.ContractEffectDate,
+T1.FundManager,
+T1.ManagementCom,
+T1.FundTypeCom,
+T1.ManagementFee,
+T1.TrusteeshipFee,
+T1.PurchaseState,
+T1.RedemptionState
+from FND_BasicInfo T1
+left join 
+(
+select T1.secucode, T1.unitnav, T8.ShareEnding, T1.enddate
+  from FND_NetAssetVal T1,
+       
+       (select T1.secucode, T1.ShareEnding, T1.enddate
+          from FND_ShareChange T1,CTE1
+         WHERE T1.SECUCODE = CTE1.SECUCODE
+           AND T1.ENDDATE = CTE1.ENDDATE
+        ) T8
+WHERE T1.SECUCODE = T8.SECUCODE
+   AND T1.ENDDATE = T8.ENDDATE
+) T2 on T1.Secucode = T2.secucode
+left join CODEBENCHMARK T3
+on T1.Secucode = T3.Secucode
+		 where  1=1
+		 and T3.priorcode = 1
+		<isEmpty prepend="and" property="secucategorycodeii">
+		t1.indexinvtype in (1,2) 
+		</isEmpty> 
+		
+		<isNotEmpty prepend="and" property="fundnature">
+		T1.FundNature= $fundnature$
+		</isNotEmpty> 
+		 <isNotEmpty prepend="and" property="secucategorycodeii">
+		 T1.SecuCategoryCodeII= $secucategorycodeii$
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="fundtypecom">
+		  T1.FundTypeCom = $fundtypecom$
+		</isNotEmpty>
+		and instr(t1.tradingcode,'M') =0 
+		
+			
+		
+		     
+			 
+		
+		  
+    </select>
+    <!-- 封闭式基金基本资料 -->
+     <select id="listfundBasicInfoByfundtypecomF" parameterClass="java.util.Map" resultMap="FndBasicinfoResultforlist">
+       WITH 
+CTE AS
+(
+  SELECT secucode, enddate, ShareEnding,ROW_NUMBER() OVER(PARTITION BY secucode ORDER BY enddate DESC,reporttype DESC) AS RN
+  FROM FND_ShareChange
+),
+CTE1 AS 
+(
+  SELECT *
+  FROM CTE
+  WHERE RN = 1
+)
+select  
+T1.FrontCode,
+T1.BackCode,
+T1.TradingCode,
+T1.SecuAbbr,
+T3.GACODE,
+T1.SECUCODE,
+T1.IssueVol / 100000000 as ListedVol,
+ T1.NewestVol / 100000000 as ShareEnding,
+
+T1.ContractEffectDate,
+T1.FundManager,
+T1.ManagementCom,
+T1.FundTypeCom,
+T1.ManagementFee,
+T1.TrusteeshipFee,
+T1.PurchaseState,
+T1.RedemptionState
+from FND_BasicInfo T1
+left join 
+(
+select T1.secucode, T1.unitnav, T8.ShareEnding, T1.enddate
+  from FND_NetAssetVal T1,
+       
+       (select T1.secucode, T1.ShareEnding, T1.enddate
+          from FND_ShareChange T1,CTE1
+         WHERE T1.SECUCODE = CTE1.SECUCODE
+           AND T1.ENDDATE = CTE1.ENDDATE
+        ) T8
+WHERE T1.SECUCODE = T8.SECUCODE
+   AND T1.ENDDATE = T8.ENDDATE
+) T2 on T1.Secucode = T2.secucode
+left join CODEBENCHMARK T3
+on T1.Secucode = T3.Secucode
+ where   T1.SecuCategoryCodeII= 1101 and instr(t1.tradingcode,'M') =0 
+        and T3.priorcode = 1
+    </select>
+    
+    <!-- 在发基金  -->
+    <select id="listfundIssue" parameterClass="java.util.Map" resultMap="FndIssueResultforlist">
+       select T2.FrontCode,
+       		  T2.BackCode,
+              T2.TradingCode,
+       T2.SecuAbbr,
+       T2.FundTypeCom,
+       T2.FundManager,
+       T2.ManagementCom,
+       T1.SecuCode,
+       T1.IssueStartDate,
+       T1.IssueEndDate
+  from FND_Issue T1
+  left join (select FrontCode,
+                    SecuAbbr,
+                    BackCode,
+                    TradingCode,
+                    FundTypeCom,
+                    FundManager,
+                    ManagementCom,
+                    SecuCode
+               from FND_BasicInfo) T2 on t1.secucode = t2.secucode
+               where T1.IssueEndDate <![CDATA[ > ]]> SYSDATE
+               and instr(t2.tradingcode,'M') =0 
+    </select>
+  
+  
+     <!-- 在发基金详情  -->
+  	<select id="listfundIssueByfundsecucode" parameterClass="java.util.Map" resultMap="FndIssueResultByfundsecucodeforlist">
+       select 
+       T1.ID,
+       T1.FrontCode,
+       T1.BackCode,
+       T1.TradingCode,
+       T1.SecuAbbr,
+       T1.SecuCode,
+       T1.FundTypeCom,
+       T1.FundManager,
+       T1.ManagementCom,
+       T1.OperationType,
+       T1.ChiName,
+       T1.Custodian,
+       T1.InvObjective,
+       T1.InvStrategy,
+       T1.InvScope,
+       T1.Benchmark,
+       T1.RiskReturnFeature,
+       T2.IssueStartDate,
+       T2.IssueEndDate,
+       T2.FSubscriptionOTCP
+  from FND_BasicInfo T1
+  left join (select SecuCode,
+                    IssueStartDate,
+                    IssueEndDate,
+                    FSubscriptionOTCP
+               from FND_Issue) T2 on t1.secucode = t2.secucode
+  where T1.SecuCode = #secucode#
+    </select>
+    
+    <!-- 获取基金数量 -->
+    <select id="getFndCount" resultClass="java.lang.Integer">
+    	SELECT COUNT(*) FROM FND_BASICINFO
+    	<dynamic prepend="WHERE">
+    		<isNotEmpty prepend="AND" property="listingstatecode"> LISTINGSTATECODE = #listingstatecode# </isNotEmpty>
+    		<isNotEmpty prepend="AND" property="secucategorycodeii"> SECUCATEGORYCODEII = #secucategorycodeii# </isNotEmpty>
+    		<isNotEmpty prepend="AND" property="fundtypecom"> FUNDTYPECOM = #fundtypecom# </isNotEmpty>
+    	</dynamic>
+    </select>
+    
+    <resultMap class="java.util.HashMap" id="FndBasicinfoForCache">
+    	<result property="frontcode" column="FRONTCODE"/>
+    	<result property="backcode" column="BACKCODE"/>
+    	<result property="tradingcode" column="TRADINGCODE"/>
+    	<result property="secuabbr" column="SECUABBR"/>
+    	<result property="chispelling" column="CHISPELLING"/>
+    </resultMap>
+    
+    <!-- 获取全部基金基础信息 -->
+    <select id="listAllFndBasicinfoForCache" resultMap="FndBasicinfoForCache">
+	   	SELECT T1.FRONTCODE,
+		       T1.BACKCODE,
+		       T1.TRADINGCODE,
+		       T1.SECUABBR,
+		       T2.CHISPELLING
+		  FROM FND_BASICINFO T1, PUB_SECURITIESMAIN T2
+		 WHERE T1.SECUCODE = T2.SECUCODE
+		   AND T1.LISTINGSTATECODE = 1
+		ORDER BY TRADINGCODE
+    </select>
+  	
+</sqlMap>
